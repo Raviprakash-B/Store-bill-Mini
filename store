@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+struct category
+{
+    char name[20], category[20];
+    int qty, iNumber;
+    double price;
+};
+
+void loadItemToStock(category *stock, int types)
+{
+    for (int i = 0; i < types; i++)
+    {
+        cout << "Enter Name of the Item: ";
+        cin >> stock[i].name;
+        cout << "Enter Item ID: ";
+        cin >> stock[i].iNumber;
+        cin.ignore();
+        cout << "Enter Category: ";
+        cin >> stock[i].category;
+        cin.ignore();
+        cout << "Enter Price: ";
+        cin >> stock[i].price;
+        cout << "Enter Qty: ";
+        cin >> stock[i].qty;
+    }
+}
