@@ -26,3 +26,15 @@ void loadItemToStock(category *stock, int types)
         cin >> stock[i].qty;
     }
 }
+void itemStatusCheck(int itemId, category stock[], int types)
+{
+    for (int i = 0; i < types; i++)
+    {
+        if (itemId == stock[i].iNumber)
+        {
+            cout << "Item Number: " << stock[i].name << endl;
+            cout << "Item Quantity: " << stock[i].qty << endl;
+            cout << "Item Price: " << stock[i].price << endl;
+        }
+    }
+}
