@@ -62,3 +62,59 @@ void billing(double cart[][3], double totalBill, int index)
     }
     cout << "Grand Bill: " << totalBill << endl;
 }
+int main()
+{
+    struct category stock[20];
+    int qty, itemNumber;
+    int types;
+    double totalBill = 0;
+    double cart[20][3];
+    int ch, index = 0;
+    cout << "Enter Item stock: " << endl;
+    cin >> types;
+    cin.ignore();
+    loadItemToStock(stock, types);
+    do
+    {
+        cout << "1 - Stock check" << endl;
+        cout << "2 - Purchase" << endl;
+        cout << "3 - Goto Bill" << endl;
+        cout << "Enter choice: ";
+        cin >> ch;
+        switch (ch)
+        {
+        case 1:
+            cout << "Enter Item Id: ";
+            cin >> itemNumber;
+            itemStatusCheck(itemNumber, stock, types);
+            break;
+        case 2:
+            cout << "Enter Item Id:" << endl;
+            cin >> itemNumber;
+            cout << "Enter Item Qty: ";
+            cin >> qty;
+            double amount;
+            amount = purchase(itemNumber, qty, stock, types);
+            cout << "---Purchased Item-----: " << amount << endl;
+            if (amount != 0)
+            {
+                totalBill += amount;
+                cart[index][0] = itemNumber;
+                cart[index][1] = qty;
+                cart[index][2] = amount;
+                index++;
+            }
+            else
+            {
+                cout << "Out of stock" << endl;
+            }
+            break;
+        case 3:
+            billing(cart, totalBill, index);
+            break;
+        default:
+            break;
+        }
+    } while (ch >= 1 && ch <= 3);
+    return 0;
+}
